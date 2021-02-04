@@ -7,15 +7,20 @@
   </head>
   <body>
     <div id="app"> 
-      {{message}} 
+      {{a}} 
     </div>
     <script type="text/javascript">
+      const data = { a: 1 };
       const app = new Vue({
         el: "#app",
-        data: {
-          message: 'Hello Vue'
-        }
+        data,
+      });
+      // 放在变量变化之前才能监听到变化
+      app.$watch('a', function(newVal, oldVal){
+        console.log(newVal, oldVal);
       })
+      app.a = 222;
+
     </script>
   </body>
 </html>
