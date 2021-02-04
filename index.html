@@ -6,14 +6,24 @@
     <script src="vue.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
-    <div id="app"> 
-      {{a}} 
+    <div id="app" v-once> 
+      {{a}}
+      <p>html代码: {{rowHtml}}</p>
+      <p v-html="rowHtml">使用v-html指令: </p>
+      <p v-bind:class="color">test...</p>
+      <p>{{ok ? 'YES' : 'NO'}}</p>
+      <p>{{message.split(' ').reverse().join(' ')}}</p>
     </div>
     <script type="text/javascript">
-      const data = { a: 1 };
       const app = new Vue({
         el: "#app",
-        data,
+        data: {
+           a: 1 ,
+           rowHtml: '<span style="color: red"> this should be red </span>',
+           color: 'red',
+           ok: true,
+           message: 'love and peace',
+        },
         // 实例初始化之前
         beforeCreate: function() {
           // 此处不能使用箭头函数，否则this指向的是window
@@ -45,5 +55,13 @@
       app.a = 222;
 
     </script>
+    <style type="text/css">
+      .red {
+        color: red;
+      }
+      .blue {
+        color: blue;
+      }
+    </style>
   </body>
 </html>
