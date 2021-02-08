@@ -7,19 +7,22 @@
   </head>
   <body>
     <div id="app"> 
-      <button v-on:click="counter+=1">数值： {{counter}}</button>
-      <button v-on:click="greet('abc', $event)">点击</button>
+      <input v-model="message">
+      <p>message is {{message}}</p>
+      <textarea v-model="message1" placeholder="add multiple lines"></textarea>
+      <p style="white-space: pre-line">{{message1}}</p>
+      <button @click="submit">提交</button>
     </div>
     <script type="text/javascript">
       const app = new Vue({
         el: "#app",
         data: {
-          counter: 0,
+          message: '',
+          message1: '',
         },
         methods: {
-          greet: function(str, e) {
-            console.log(str);
-            console.log(e);
+          submit() {
+            console.log('this', this);
           }
         }
       });
