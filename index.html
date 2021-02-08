@@ -7,53 +7,30 @@
   </head>
   <body>
     <div id="app" v-once> 
-      {{a}}
-      <p>html代码: {{rowHtml}}</p>
-      <p v-html="rowHtml">使用v-html指令: </p>
-      <p v-bind:class="color">test...</p>
-      <p>{{ok ? 'YES' : 'NO'}}</p>
-      <p>{{message.split(' ').reverse().join(' ')}}</p>
+      <p v-if="seen">现在你看到我了</p>
+      <a v-bind:href="url">。。。</a>
+      <div @click="click1">
+        <div @click.stop="click2">
+          click me
+        </div>
+      </div>
     </div>
     <script type="text/javascript">
       const app = new Vue({
         el: "#app",
         data: {
-           a: 1 ,
-           rowHtml: '<span style="color: red"> this should be red </span>',
-           color: 'red',
-           ok: true,
-           message: 'love and peace',
+          seen: true,
+          url: 'https://m.maoyan.com',
         },
-        // 实例初始化之前
-        beforeCreate: function() {
-          // 此处不能使用箭头函数，否则this指向的是window
-          console.log('this', this);
-          console.log('beforeCreate');
-        },
-        // 实例创建完之后立即调用，此时data，和watch配置已完成。
-        created: function() {
-          console.log('create');
-        },
-        beforeMount: function() {
-          console.log('beforeMount');
-        },
-        // 挂载成功，元素节点被vue节点替换
-        mounted: function() {
-          console.log('mounted');
-        },
-        beforeUpdate: function() {
-          console.log('beforeUpdate');
-        },
-        updated: function() {
-          console.log('updated');
+        methods: {
+          click1 () {
+            console.log('clicked 1');
+          },
+          click2 () {
+            console.log('clicked 2');
+          } 
         }
       });
-      // 放在变量变化之前才能监听到变化
-      app.$watch('a', function(newVal, oldVal){
-        console.log(newVal, oldVal);
-      })
-      app.a = 222;
-
     </script>
     <style type="text/css">
       .red {
