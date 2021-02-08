@@ -7,37 +7,27 @@
   </head>
   <body>
     <div id="app" v-once> 
-      <p v-if="seen">现在你看到我了</p>
-      <a v-bind:href="url">。。。</a>
-      <div @click="click1">
-        <div @click.stop="click2">
-          click me
-        </div>
+      <div v-bind:class="{active: isActive}">
+        Hi,vue
+      </div>
+      <div v-bind:style="{color: color, fontSize: size, backgroundColor: isRed ? 'red' : ''}">
+        hi,vue
       </div>
     </div>
     <script type="text/javascript">
       const app = new Vue({
         el: "#app",
         data: {
-          seen: true,
-          url: 'https://m.maoyan.com',
+         isActive: true,
+         color: 'green',
+         size: '50px',
+         isRed: false,
         },
-        methods: {
-          click1 () {
-            console.log('clicked 1');
-          },
-          click2 () {
-            console.log('clicked 2');
-          } 
-        }
       });
     </script>
     <style type="text/css">
-      .red {
-        color: red;
-      }
-      .blue {
-        color: blue;
+      .active {
+        background-color: red;
       }
     </style>
   </body>
