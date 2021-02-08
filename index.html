@@ -7,18 +7,30 @@
   </head>
   <body>
     <div id="app"> 
-      <div v-if="type==='A'">A</div>
-      <div v-else-if="type==='B'">B</div>
-      <div v-else="type==='C'">C</div>
-      <div v-show="ok">haha</div>
+      <ul>
+        <li v-for="item, index in items" :key="index">
+          {{index}} {{item.message}}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="value, key in obj" :key="key">
+          {{key}} {{value}}
+        </li>
+      </ul>
     </div>
     <script type="text/javascript">
-      // v-if具有更高的切换开销，v-show具有更高的初始化渲染开销
       const app = new Vue({
         el: "#app",
         data: {
-          type: 'C',
-          ok: false,
+          items: [
+            { message: 'Foo' },
+            { message: 'Bar' },
+          ],
+          obj: {
+            title: 'mybook',
+            description: 'a easy demo',
+            time: '2020 02 08',
+          }
         },
       });
     </script>
